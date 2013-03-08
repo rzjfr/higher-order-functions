@@ -61,15 +61,38 @@ int countNs(list_t * xs, intptr_t n) {
   return length(filter(isN, (void*)n, xs));
 }
 
+void* dec(void* ignore, void* i) {
+  return (void*)(((intptr_t)i)-1);
+}
+
+list_t * decAll(list_t * xs) {
+    return map(dec, NULL, xs);
+}
+
 void main()
 {
   //testing link list
-  list_t* x=NULL;
-  list_t * ans = (list_t *)malloc(sizeof(list_t));
-  ans->head = 1;
-  ans->tail = x;
-  x=ans;
+/*  list_t* x=NULL;*/
+/*  list_t * ans = (list_t *)malloc(sizeof(list_t));*/
+/*  ans->head = 1;*/
+/*  ans->tail = x;*/
+/*  x=ans;
+/*printf("%d",x->head);*/
 
+  // creats a list named z
+  list_t* y= makelist(9,NULL);
+  list_t* z= makelist(10,y);
+
+  int len= length(z);
+  printf("\nlength of list : %d\n",len);
+
+  printf("our list    : [%d,",z->head);
+  printf(" %d]\n",z->tail->head);
+
+  list_t* l= decAll(z); // mapping dec fucntion to list z
+  printf("mapped list : [%d,",l->head);
+  printf(" %d]",l->tail->head);
+  
   printf("\n");
   return 0;
 }
