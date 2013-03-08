@@ -40,6 +40,7 @@ int length(list_t* xs) {
   return ans;
 }
 
+//signed integer type that is big enough to hold a pointer
 // awful type casts to match what map expects
 void* doubleInt(void* ignore, void* i) {
   return (void*)(((intptr_t)i)*2);
@@ -62,6 +63,13 @@ int countNs(list_t * xs, intptr_t n) {
 
 void main()
 {
+  //testing link list
+  list_t* x=NULL;
+  list_t * ans = (list_t *)malloc(sizeof(list_t));
+  ans->head = 1;
+  ans->tail = x;
+  x=ans;
+
   printf("\n");
   return 0;
 }
