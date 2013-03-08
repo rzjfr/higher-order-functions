@@ -4,21 +4,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// (We did not actually go through this file in any detail -- it is provided
-//  for C programmers curious how to program with higher-order functions
-//  in C.)
-// (This file has not been tested.)
-
-// The key point is that function pointers are only code pointers
-
-// Rather than create structs for closures, which would work fine,
-// we follow common C practice of having higher-order functions 
-// take explicit environment fields as another argument
-//  -- if they don't, then they are much less useful 
-
-// void* requires lots of unchecked conversions between types,
-// but C has no notion of type variables
-
 typedef struct List list_t;
 struct List {
   void * head;
@@ -32,10 +17,6 @@ list_t * makelist (void * x, list_t * xs) {
   return ans;
 }
 
-// as in the Java version, we show simple recursive solutions because
-// the loop-based ones require mutation and previous pointers.
-// But the more important point is the explicit env field passed to the
-// function pointer
 list_t * map(void* (*f)(void*,void*), void* env, list_t * xs) {
   if(xs==NULL)
     return NULL;
@@ -77,4 +58,10 @@ bool isN(void* n, void* i) {
 // assumes list hold intptr_t fields
 int countNs(list_t * xs, intptr_t n) {
   return length(filter(isN, (void*)n, xs));
+}
+
+void main()
+{
+  printf("\n");
+  return 0;
 }
